@@ -1,0 +1,28 @@
+{
+  "name": "@modelcontextprotocol/server-api-finder",
+  "version": "0.1.0",
+  "description": "MCP server for finding relevant APIs based on user intent",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "mcp-server-api-finder": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && shx chmod +x dist/*.js",
+    "prepare": "npm run build",
+    "watch": "tsc --watch"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.0.1",
+    "@types/node-fetch": "^2.6.12",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "shx": "^0.3.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  }
+}
