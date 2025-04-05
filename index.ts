@@ -238,6 +238,25 @@ registerApi(
   ["주식", "잔고", "잔고조회", "계좌", "보유종목", "포트폴리오", "주식잔고", "자산", "한국투자증권"]
 );
 
+// 한국투자증권 매수가능조회 API
+registerApi(
+  "korea_investment_inquire_psbl_order",
+  "/uapi/domestic-stock/v1/trading/inquire-psbl-order",
+  "GET",
+  "한국투자증권 매수가능조회 API - 주식 매수 가능 수량 및 금액을 조회합니다.",
+  {
+    "CANO": "계좌번호(8자리)",
+    "ACNT_PRDT_CD": "계좌상품코드(2자리)",
+    "PDNO": "종목코드(6자리, 종목코드와 가격 모두 공란 입력 시 매수금액만 조회)",
+    "ORD_UNPR": "주문단가(시장가(ORD_DVSN:01) 조회 시 공란)",
+    "ORD_DVSN": "주문구분(01: 시장가로 조회해야 종목증거금율 반영됨)",
+    "CMA_EVLU_AMT_ICLD_YN": "CMA평가금액포함여부(N)",
+    "OVRS_ICLD_YN": "해외포함여부(N)"
+  },
+  '{"output":{"ord_psbl_cash":"주문가능현금(예수금)","nrcvb_buy_amt":"미수없는매수금액(미수 사용X)","nrcvb_buy_qty":"미수없는매수수량(미수 사용X)","max_buy_amt":"최대매수금액(미수 사용O)","max_buy_qty":"최대매수수량(미수 사용O)"}}',
+  ["주식", "매수", "매수가능", "주문가능", "가능금액", "가능수량", "예수금", "매수수량", "한국투자증권"]
+);
+
 runServer().catch((error) => {
   console.error("서버 실행 중 치명적 오류 발생:", error);
   process.exit(1);
