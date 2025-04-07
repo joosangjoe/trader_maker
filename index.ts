@@ -257,6 +257,29 @@ registerApi(
   ["주식", "매수", "매수가능", "주문가능", "가능금액", "가능수량", "예수금", "매수수량", "한국투자증권"]
 );
 
+
+// 한국투자증권 주식주문(신용) API
+registerApi(
+  "korea_investment_stock_order_credit",
+  "/uapi/domestic-stock/v1/trading/order-credit",
+  "POST",
+  "한국투자증권 주식주문(신용) API - 신용거래를 통한 주식 매수/매도 주문을 실행합니다. (모의투자 미지원)",
+  {
+    "CANO": "계좌번호(8자리)",
+    "ACNT_PRDT_CD": "계좌상품코드(2자리)",
+    "PDNO": "종목코드(6자리)",
+    "CRDT_TYPE": "신용유형코드(21:자기융자신규, 23:유통융자신규, 25:자기융자상환, 26:유통대주상환 등)",
+    "LOAN_DT": "대출일자(YYYYMMDD)",
+    "ORD_DVSN": "주문구분(예: 00-지정가)",
+    "ORD_QTY": "주문수량",
+    "ORD_UNPR": "주문단가",
+    "RSVN_ORD_YN": "예약주문여부(N)"
+  },
+  '{"output":{"krx_fwdg_ord_orgno":"거래소코드","odno":"주문번호","ord_tmd":"주문시간"}}',
+  ["주식", "주문", "신용", "신용주문", "융자", "대주", "신용거래", "신용매수", "신용매도", "한국투자증권"]
+);
+
+
 runServer().catch((error) => {
   console.error("서버 실행 중 치명적 오류 발생:", error);
   process.exit(1);
