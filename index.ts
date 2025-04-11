@@ -15,6 +15,7 @@ interface ApiInfo {
   method: string;
   description: string;
   parameters: Record<string, string>;
+  headers?: Record<string, string>; // 헤더 정보 추가
   responseExample: string;
 }
 
@@ -89,6 +90,7 @@ async function handleSearchApi(intent: string) {
       method: api.method,
       description: api.description,
       parameters: api.parameters,
+      headers: api.headers, // 헤더 정보 추가
       responseExample: api.responseExample
     }));
     
@@ -178,7 +180,8 @@ function registerApi(
   description: string,
   parameters: Record<string, string>,
   responseExample: string,
-  keywords: string[]
+  keywords: string[],
+  headers?: Record<string, string> // 헤더 정보 파라미터 추가
 ) {
   // API 정보 등록
   apiDatabase.push({
@@ -187,6 +190,7 @@ function registerApi(
     method,
     description,
     parameters,
+    headers, // 헤더 정보 포함
     responseExample
   });
   
@@ -197,6 +201,24 @@ function registerApi(
 }
 
 // API 등록
+// 한국투자증권 접근토큰발급 API
+registerApi(
+  "korea_investment_oauth_token",
+  "/oauth2/tokenP",
+  "POST",
+  "한국투자증권 접근토큰발급 API - API 호출에 필요한 OAuth 접근 토큰을 발급합니다.",
+  {
+    "grant_type": "client_credentials (고정값)",
+    "appkey": "발급받은 appkey",
+    "appsecret": "발급받은 appsecret"
+  },
+  '{"access_token":"발급된 접근 토큰","token_type":"Bearer","expires_in":86400,"access_token_token_expired":"2023-12-31 23:59:59"}',
+  ["토큰", "접근토큰", "인증", "OAuth", "로그인", "API키", "API 키", "인증키", "한국투자증권"],
+  {
+    "content-type": "application/json; charset=utf-8"
+  }
+);
+
 // 한국투자증권 국내주식주문(현금) API
 registerApi(
   "korea_investment_domestic_stock_order_cash",
@@ -212,7 +234,14 @@ registerApi(
     "ORD_UNPR": "주문단가"
   },
   '{"ODNO":"주문번호", "ORD_TMD":"주문시간", "KRX_FWDG_ORD_ORGNO":"한국거래소전송주문조직번호", "ODNO_TYPE":"주문번호구분"}',
-  ["주식", "주문", "매수", "매도", "현금주문", "주식주문", "국내주식", "한국투자증권"]
+  ["주식", "주문", "매수", "매도", "현금주문", "주식주문", "국내주식", "한국투자증권"],
+  {
+    "content-type": "application/json; charset=utf-8",
+    "authorization": "Bearer {접근토큰}",
+    "appkey": "발급받은 appkey",
+    "appsecret": "발급받은 appsecret",
+    "tr_id": "TTTC0012U(매수-실전) / VTTC0012U(매수-모의) / TTTC0011U(매도-실전) / VTTC0011U(매도-모의)"
+  }
 );
 
 // 한국투자증권 주식잔고조회 API
@@ -235,7 +264,13 @@ registerApi(
     "CTX_AREA_NK100": "연속조회키100"
   },
   '{"output1":[{"pdno":"종목번호","prdt_name":"종목명","hldg_qty":"보유수량","pchs_avg_pric":"매입평균가격","pchs_amt":"매입금액","prpr":"현재가","evlu_pfls_amt":"평가손익금액","evlu_pfls_rt":"평가손익율"}],"output2":{"dnca_tot_amt":"예수금총금액","scts_evlu_amt":"유가평가금액","tot_evlu_amt":"총평가금액","nass_amt":"순자산금액"}}',
-  ["주식", "잔고", "잔고조회", "계좌", "보유종목", "포트폴리오", "주식잔고", "자산", "한국투자증권"]
+  ["주식", "잔고", "잔고조회", "계좌", "보유종목", "포트폴리오", "주식잔고", "자산", "한국투자증권"],
+  {
+    "authorization": "Bearer {접근토큰}",
+    "appkey": "발급받은 appkey",
+    "appsecret": "발급받은 appsecret",
+    "tr_id": "TTTC8434R(실전) / VTTC8434R(모의)"
+  }
 );
 
 // 한국투자증권 매수가능조회 API
@@ -254,9 +289,14 @@ registerApi(
     "OVRS_ICLD_YN": "해외포함여부(N)"
   },
   '{"output":{"ord_psbl_cash":"주문가능현금(예수금)","nrcvb_buy_amt":"미수없는매수금액(미수 사용X)","nrcvb_buy_qty":"미수없는매수수량(미수 사용X)","max_buy_amt":"최대매수금액(미수 사용O)","max_buy_qty":"최대매수수량(미수 사용O)"}}',
-  ["주식", "매수", "매수가능", "주문가능", "가능금액", "가능수량", "예수금", "매수수량", "한국투자증권"]
+  ["주식", "매수", "매수가능", "주문가능", "가능금액", "가능수량", "예수금", "매수수량", "한국투자증권"],
+  {
+    "authorization": "Bearer {접근토큰}",
+    "appkey": "발급받은 appkey",
+    "appsecret": "발급받은 appsecret",
+    "tr_id": "TTTC8908R(실전) / VTTC8908R(모의)"
+  }
 );
-
 
 // 한국투자증권 주식주문(신용) API
 registerApi(
@@ -276,9 +316,16 @@ registerApi(
     "RSVN_ORD_YN": "예약주문여부(N)"
   },
   '{"output":{"krx_fwdg_ord_orgno":"거래소코드","odno":"주문번호","ord_tmd":"주문시간"}}',
-  ["주식", "주문", "신용", "신용주문", "융자", "대주", "신용거래", "신용매수", "신용매도", "한국투자증권"]
+  ["주식", "주문", "신용", "신용주문", "융자", "대주", "신용거래", "신용매수", "신용매도", "한국투자증권"],
+  {
+    "content-type": "application/json; charset=utf-8",
+    "authorization": "Bearer {접근토큰}",
+    "appkey": "발급받은 appkey",
+    "appsecret": "발급받은 appsecret",
+    "tr_id": "TTTC0052U(매수-실전) / TTTC0051U(매도-실전)",
+    "custtype": "P(개인) 또는 B(법인)"
+  }
 );
-
 
 runServer().catch((error) => {
   console.error("서버 실행 중 치명적 오류 발생:", error);
