@@ -43,22 +43,31 @@ docker run -it api-finder-mcp-server
 
 ## API 등록 방법
 
-새로운 API를 등록하려면 `index.ts` 파일의 아래 부분에 `registerApi` 함수 호출을 추가합니다:
+API는 주로 `apis.json` 파일을 통해 관리됩니다. 서버 시작 시 이 파일을 읽어 API 정보를 로드합니다.
 
-```typescript
-registerApi(
-  "api_name",              // API 이름
-  "/api/endpoint",         // API 엔드포인트
-  "GET",                   // HTTP 메서드
-  "API 설명",              // API 설명
-  {                        // API 파라미터
-    "param1": "파라미터1 설명",
-    "param2": "파라미터2 설명"
-  },
-  '{"result": "응답 예시"}', // 응답 예시 (JSON 문자열)
-  ["키워드1", "키워드2"]    // 의도 매칭 키워드
-);
+`apis.json` 파일에 새로운 API를 추가하려면 다음 JSON 구조에 따라 정보를 입력합니다:
+
+```json
+[
+  {
+    "name": "api_name",
+    "endpoint": "/api/endpoint",
+    "method": "GET",
+    "description": "API 설명",
+    "parameters": {
+      "param1": "파라미터1 설명",
+      "param2": "파라미터2 설명"
+    },
+    "responseExample": "{\"result\": \"응답 예시\"}",
+    "keywords": ["키워드1", "키워드2"],
+    "headers": {
+      "header1": "헤더1 값"
+    }
+  }
+]
 ```
+
+기존 `index.ts`의 `registerApi` 함수는 여전히 동적으로 API를 등록하는 데 사용할 수 있습니다. 하지만 이 방법으로 추가된 API는 메모리에만 저장되며, 서버 재시작 시 사라집니다. 변경 사항을 영구적으로 유지하려면 `apis.json` 파일을 직접 수정해야 합니다.
 
 ## 예시 사용법
 
