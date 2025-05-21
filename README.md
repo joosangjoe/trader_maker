@@ -123,6 +123,12 @@ API는 주로 `apis.json` 파일을 통해 관리됩니다. 서버 시작 시 �
 - **AI 도구 연동 예시 (AI Tool Integration Example):**
     - 사용자: "내 주식 계좌 잔고를 보는 API 찾아줘." (User: "Find an API to see my stock account balance.")
     - AI 도구 (내부적으로): `search_api` 도구를 `{"intent": "주식 계좌 잔고 조회"}` 인자와 함께 호출합니다. (AI Tool (internally): Calls the `search_api` tool with the argument `{"intent": "주식 계좌 잔고 조회"}`.)
+    - 사용자: "주식 매수 주문하는 방법 알려줘."
+    - AI 도구 (내부적으로): `search_api` 도구를 `{"intent": "주식 매수 방법"}` 인자와 함께 호출합니다.
+    - 사용자: "내 현재 보유 주식들을 확인하고 싶은데, 어떤 API를 써야해?"
+    - AI 도구 (내부적으로): `search_api` 도구를 `{"intent": "보유 주식 확인 API"}` 인자와 함께 호출합니다.
+    - 사용자: "OAuth 토큰 발급받는 API 있어?"
+    - AI 도구 (내부적으로): `search_api` 도구를 `{"intent": "OAuth 토큰 발급"}` 인자와 함께 호출합니다.
 
 ### `list_all_apis` 도구 사용법 (Using the `list_all_apis` Tool)
 - 등록된 모든 API의 목록을 반환합니다. (Returns a list of all registered APIs.)
@@ -160,3 +166,7 @@ API는 주로 `apis.json` 파일을 통해 관리됩니다. 서버 시작 시 �
 - **AI 도구 연동 예시 (AI Tool Integration Example):**
     - 사용자: "여기서 어떤 API들을 사용할 수 있어?" (User: "What APIs can I use here?")
     - AI 도구 (내부적으로): `list_all_apis` 도구를 호출합니다. (AI Tool (internally): Calls the `list_all_apis` tool.)
+    - 사용자: "이 시스템으로 할 수 있는 모든 작업을 나열해줘."
+    - AI 도구 (내부적으로): `list_all_apis` 도구를 호출합니다.
+    - 사용자: "금융 관련해서 어떤 기능들이 제공돼?"
+    - AI 도구 (내부적으로): `list_all_apis` 도구를 호출하여 사용 가능한 API 목록을 확인하고, 사용자의 다음 질문에 따라 특정 API를 `search_api`로 검색할 수 있습니다.
