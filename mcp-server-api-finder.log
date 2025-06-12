@@ -1,0 +1,57 @@
+2025-04-21T05:26:14.274Z [api-finder] [info] Initializing server...
+2025-04-21T05:26:14.282Z [api-finder] [info] Server started and connected successfully
+2025-04-21T05:26:14.285Z [api-finder] [info] Message from client: {"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"claude-ai","version":"0.1.0"}},"jsonrpc":"2.0","id":0}
+node:internal/modules/cjs/loader:1228
+  throw err;
+  ^
+
+Error: Cannot find module '/dist/index.js'
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+    at Function._load (node:internal/modules/cjs/loader:1055:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)
+    at node:internal/main/run_main_module:36:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v22.14.0
+2025-04-21T05:26:14.306Z [api-finder] [info] Server transport closed
+2025-04-21T05:26:14.306Z [api-finder] [info] Client transport closed
+2025-04-21T05:26:14.306Z [api-finder] [info] Server transport closed unexpectedly, this is likely due to the process exiting early. If you are developing this MCP server you can add output to stderr (i.e. `console.error('...')` in JavaScript, `print('...', file=sys.stderr)` in python) and it will appear in this log.
+2025-04-21T05:26:14.306Z [api-finder] [error] Server disconnected. For troubleshooting guidance, please visit our [debugging documentation](https://modelcontextprotocol.io/docs/tools/debugging) {"context":"connection"}
+2025-04-21T05:26:14.306Z [api-finder] [info] Client transport closed
+2025-04-22T07:43:37.088Z [api-finder] [info] Initializing server...
+2025-04-22T07:43:37.113Z [api-finder] [info] Server started and connected successfully
+2025-04-22T07:43:37.114Z [api-finder] [info] Message from client: {"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"claude-ai","version":"0.1.0"}},"jsonrpc":"2.0","id":0}
+node:internal/modules/cjs/loader:1228
+  throw err;
+  ^
+
+Error: Cannot find module '/dist/index.js'
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+    at Function._load (node:internal/modules/cjs/loader:1055:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)
+    at node:internal/main/run_main_module:36:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v22.14.0
+2025-04-22T07:43:37.138Z [api-finder] [info] Server transport closed
+2025-04-22T07:43:37.138Z [api-finder] [info] Client transport closed
+2025-04-22T07:43:37.138Z [api-finder] [info] Server transport closed unexpectedly, this is likely due to the process exiting early. If you are developing this MCP server you can add output to stderr (i.e. `console.error('...')` in JavaScript, `print('...', file=sys.stderr)` in python) and it will appear in this log.
+2025-04-22T07:43:37.138Z [api-finder] [error] Server disconnected. For troubleshooting guidance, please visit our [debugging documentation](https://modelcontextprotocol.io/docs/tools/debugging) {"context":"connection"}
+2025-04-22T07:43:37.138Z [api-finder] [info] Client transport closed
+2025-04-22T07:48:55.778Z [api-finder] [info] Initializing server...
+2025-04-22T07:48:55.787Z [api-finder] [info] Server started and connected successfully
+2025-04-22T07:48:55.788Z [api-finder] [info] Message from client: {"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"claude-ai","version":"0.1.0"}},"jsonrpc":"2.0","id":0}
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '//main.py': [Errno 2] No such file or directory
+2025-04-22T07:48:55.922Z [api-finder] [info] Server transport closed
+2025-04-22T07:48:55.922Z [api-finder] [info] Client transport closed
+2025-04-22T07:48:55.922Z [api-finder] [info] Server transport closed unexpectedly, this is likely due to the process exiting early. If you are developing this MCP server you can add output to stderr (i.e. `console.error('...')` in JavaScript, `print('...', file=sys.stderr)` in python) and it will appear in this log.
+2025-04-22T07:48:55.922Z [api-finder] [error] Server disconnected. For troubleshooting guidance, please visit our [debugging documentation](https://modelcontextprotocol.io/docs/tools/debugging) {"context":"connection"}
+2025-04-22T07:48:55.922Z [api-finder] [info] Client transport closed

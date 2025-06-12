@@ -1,0 +1,22 @@
+{
+  "name": "mcp-server/api-finder",
+  "version": "0.1.0",
+  "capabilities": {
+    "tools": {
+      "search_api": {
+        "name": "search_api",
+        "description": "사용자 의도에 맞는 API 정보 검색",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "intent": {
+              "type": "string",
+              "description": "사용자의 의도 또는 요청 내용"
+            }
+          },
+          "required": ["intent"]
+        }
+      }
+    }
+  }
+} 

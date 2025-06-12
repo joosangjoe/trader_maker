@@ -1,0 +1,37 @@
+{
+  "mcp": {
+    "servers": {
+      "api-finder": {
+        "url": "http://localhost:8000",
+        "config": "./mcp_config.json",
+        "description": "API 검색 서버 - 사용자 의도에 맞는 API 정보를 검색합니다.",
+        "capabilities": {
+          "search_api": {
+            "name": "search_api",
+            "description": "사용자 의도에 맞는 API 정보 검색",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "intent": {
+                  "type": "string",
+                  "description": "사용자의 의도 또는 요청 내용"
+                }
+              },
+              "required": ["intent"]
+            }
+          }
+        }
+      }
+    }
+  },
+  "mcpServers": {
+    "api-finder": {
+      "command": "python3",
+      "args": ["/Users/a112252/Documents/trader_maker/uv/main.py"],
+      "cwd": "/Users/a112252/Documents/trader_maker/uv",
+      "env": {
+        "PYTHONPATH": "/Users/a112252/Documents/trader_maker/uv"
+      }
+    }
+  }
+} 
